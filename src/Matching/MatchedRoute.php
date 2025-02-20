@@ -26,22 +26,22 @@ class MatchedRoute implements \ArrayAccess
         return $this->rules;
     }
 
-    public function offsetExists($offset): bool
+    public function offsetExists(mixed $offset): bool
     {
         return is_callable([$this, 'get' . ucfirst($offset)]);
     }
 
-    public function offsetGet($offset)
+    public function offsetGet(mixed $offset): mixed
     {
         return call_user_func([$this, 'get' . ucfirst($offset)]);
     }
 
-    public function offsetSet($offset, $value): void
+    public function offsetSet(mixed $offset, mixed $value): void
     {
         $this->$offset = $value;
     }
 
-    public function offsetUnset($offset): void
+    public function offsetUnset(mixed $offset): void
     {
         $this->$offset = null;
     }
